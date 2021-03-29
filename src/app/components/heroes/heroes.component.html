@@ -1,9 +1,20 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
+  <li class="d-flex" *ngFor="let hero of heroes">  <!-- | async   For heroes$ observable on heroes.component.ts -->
       <a routerLink="/detail/{{hero.id}}">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
   </a>
+  <button class="btn btn-outline-danger h-70" title="delete hero"
+  (click)="delete(hero)">x</button>
   </li>
 </ul>
+<div>
+  <label id="new-hero">Hero name: </label>
+  <input for="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="btn btn-success ml-1" (click)="add(heroName.value); heroName.value=''">
+    Add hero
+  </button>
+</div>
 
